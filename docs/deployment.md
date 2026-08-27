@@ -9,7 +9,7 @@ GitHub push to main
         ↓
 CI: lint + types + static analysis + tests
         ↓
-Build Vite assets
+Build Vite client and SSR assets
         ↓
 SSH upload to dedicated deployer account
         ↓
@@ -19,7 +19,7 @@ Composer install → migrate → optimize
         ↓
 /var/www/docuflowug/current (atomic symlink)
         ↓
-Nginx + PHP-FPM + queue worker
+Nginx + PHP-FPM + queue worker + Inertia SSR
 ```
 
 The production `.env`, SQLite database, user-generated storage, logs, cache data and sessions live under `/var/www/docuflowug/shared` and survive releases.
@@ -71,6 +71,23 @@ The VPS already runs PHP 8.4-FPM. Install the matching extensions without adding
 apt update
 apt install -y nginx git unzip curl sqlite3 composer php8.4-cli php8.4-fpm php8.4-curl php8.4-mbstring php8.4-xml php8.4-zip php8.4-sqlite3 php8.4-bcmath php8.4-intl
 ```
+
+Inertia v3 SSR requires Node 22 or newer. This server also hosts applications
+that may depend on the existing system Node version, so install a verified
+Node 22 runtime alongside it instead of replacing `/usr/bin/node`:
+
+```bash
+cd /tmp
+curl -fsSLO https://nodejs.org/dist/latest-v22.x/node-v22.23.2-linux-x64.tar.xz
+echo 'd60acfe00a2932254bb0ad20e01b0d74397a0875595de719654b214f4b03f307  node-v22.23.2-linux-x64.tar.xz' | sha256sum -c -
+install -d /opt/node-v22.23.2
+tar -xJf node-v22.23.2-linux-x64.tar.xz --strip-components=1 -C /opt/node-v22.23.2
+ln -sfn /opt/node-v22.23.2 /opt/node22
+/opt/node22/bin/node --version
+```
+
+The last command must report a `v22` release. The SSR systemd unit uses this
+isolated binary explicitly.
 
 Create an unprivileged deployment user and the shared directory structure:
 
@@ -193,6 +210,7 @@ git clone --depth=1 https://github.com/Lawrencekawalya/docuflow-ug-website.git /
 cp /tmp/docuflow-bootstrap/deploy/nginx/docuflowug.syntaxsystems.co.conf /etc/nginx/sites-available/docuflowug.syntaxsystems.co
 ln -s /etc/nginx/sites-available/docuflowug.syntaxsystems.co /etc/nginx/sites-enabled/docuflowug.syntaxsystems.co
 cp /tmp/docuflow-bootstrap/deploy/systemd/docuflowug-queue.service /etc/systemd/system/docuflowug-queue.service
+cp /tmp/docuflow-bootstrap/deploy/systemd/docuflowug-ssr.service /etc/systemd/system/docuflowug-ssr.service
 nginx -t
 systemctl reload nginx
 systemctl daemon-reload
@@ -251,19 +269,22 @@ curl -H 'Host: docuflowug.syntaxsystems.co' http://127.0.0.1/up
 
 The health endpoint should return `Application up`.
 
-## 8. Start the queue worker
+## 8. Start the queue worker and SSR server
 
 After the first release exists:
 
 ```bash
-systemctl enable --now docuflowug-queue
+systemctl enable --now docuflowug-queue docuflowug-ssr
 systemctl status docuflowug-queue --no-pager
+systemctl status docuflowug-ssr --no-pager
+sudo -u deployer php /var/www/docuflowug/current/artisan inertia:check-ssr
 ```
 
 View worker logs with:
 
 ```bash
 journalctl -u docuflowug-queue -n 100 --no-pager
+journalctl -u docuflowug-ssr -n 100 --no-pager
 ```
 
 ## 9. Enable HTTPS
@@ -300,13 +321,14 @@ This real delivery check is required by the grading rubric; an automated notific
 
 ## Normal deployments
 
-Every later push to `main` automatically runs CI and deploys only if CI passes. The five newest releases are retained.
+Every later push to `main` automatically runs CI and deploys only if CI passes. The five newest releases are retained. Each production build includes the browser bundle and the Inertia SSR bundle. Deployment stops the old SSR process after the atomic release switch, and systemd starts it again against the new release.
 
 After editing the production `.env`, refresh cached configuration and restart the worker:
 
 ```bash
 sudo -u deployer php /var/www/docuflowug/current/artisan optimize
 sudo -u deployer php /var/www/docuflowug/current/artisan queue:restart
+sudo -u deployer php /var/www/docuflowug/current/artisan inertia:stop-ssr
 ```
 
 ## Rollback

@@ -1,0 +1,19 @@
+[Unit]
+Description=DocuFlow UG Inertia SSR server
+After=network.target
+ConditionPathExists=/var/www/docuflowug/current/bootstrap/ssr/app.js
+
+[Service]
+Type=simple
+User=deployer
+Group=www-data
+WorkingDirectory=/var/www/docuflowug/current
+ExecStart=/usr/bin/php artisan inertia:start-ssr --runtime=/opt/node22/bin/node --no-interaction
+Restart=always
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=30
+UMask=0002
+
+[Install]
+WantedBy=multi-user.target

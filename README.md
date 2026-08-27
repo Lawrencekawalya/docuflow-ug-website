@@ -62,6 +62,10 @@ composer ci:check
 npm run build
 ```
 
+The production build includes Inertia server-side rendering. In production,
+the `docuflowug-ssr` service serves complete initial HTML to visitors and
+crawlers while Vue hydrates it for client-side navigation.
+
 Before grading or launch, submit a controlled request through the deployed form and verify both the saved database record and delivery to the configured email recipient.
 
 See [the implementation plan](docs/implementationplan.md) for the full rubric-aligned delivery and acceptance criteria.

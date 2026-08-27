@@ -79,6 +79,7 @@ jobs:
           php artisan key:generate --no-interaction
           npm ci
           npm run build
+          test -f bootstrap/ssr/app.js
 
       - name: Package release
         run: |

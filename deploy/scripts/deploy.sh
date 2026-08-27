@@ -67,6 +67,7 @@ ln -s "$release_path" "$application_root/current.next"
 mv -Tf "$application_root/current.next" "$application_root/current"
 
 php "$application_root/current/artisan" queue:restart || true
+php "$application_root/current/artisan" inertia:stop-ssr --no-interaction || true
 
 rm -f "$archive_path"
 
