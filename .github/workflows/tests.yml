@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: https://docuflowug.syntaxsystems.com
+      url: https://docuflowug.syntaxsystems.co
     concurrency:
       group: docuflow-production
       cancel-in-progress: false
@@ -134,4 +134,4 @@ jobs:
             -i "$HOME/.ssh/docuflow_deploy" \
             -o BatchMode=yes \
             "$DEPLOY_USER@$DEPLOY_HOST" \
-            "curl --fail --silent --show-error --retry 5 --header 'Host: docuflowug.syntaxsystems.com' http://127.0.0.1/up"
+            "curl --fail --silent --show-error --retry 5 --header 'Host: docuflowug.syntaxsystems.co' http://127.0.0.1/up"

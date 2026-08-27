@@ -1,6 +1,6 @@
 # DocuFlow UG Production Deployment
 
-This guide deploys `main` to `docuflowug.syntaxsystems.com` through GitHub Actions. CI must pass before deployment starts. Each deployment creates an immutable release, reuses shared state, runs migrations, atomically switches the `current` symlink, and restarts the queue worker.
+This guide deploys `main` to `docuflowug.syntaxsystems.co` through GitHub Actions. CI must pass before deployment starts. Each deployment creates an immutable release, reuses shared state, runs migrations, atomically switches the `current` symlink, and restarts the queue worker.
 
 ## Architecture
 
@@ -26,7 +26,7 @@ The production `.env`, SQLite database, user-generated storage, logs, cache data
 
 ## 1. Configure DNS
 
-In the DNS manager for `syntaxsystems.com`, add:
+In the DNS manager for `syntaxsystems.co`, add:
 
 | Type | Name | Value | TTL |
 | --- | --- | --- | --- |
@@ -37,7 +37,7 @@ Do not add an `AAAA` record until IPv6 HTTP and firewall access have been verifi
 Verify from the local computer:
 
 ```bash
-dig +short A docuflowug.syntaxsystems.com
+dig +short A docuflowug.syntaxsystems.co
 ```
 
 The result must be `187.77.179.252` before requesting the TLS certificate.
@@ -131,7 +131,7 @@ APP_NAME="DocuFlow UG"
 APP_ENV=production
 APP_KEY=CHANGE_ME_WITH_GENERATED_KEY
 APP_DEBUG=false
-APP_URL=https://docuflowug.syntaxsystems.com
+APP_URL=https://docuflowug.syntaxsystems.co
 
 APP_LOCALE=en
 APP_FALLBACK_LOCALE=en
@@ -147,7 +147,7 @@ SESSION_DRIVER=database
 SESSION_LIFETIME=120
 SESSION_ENCRYPT=true
 SESSION_PATH=/
-SESSION_DOMAIN=docuflowug.syntaxsystems.com
+SESSION_DOMAIN=docuflowug.syntaxsystems.co
 
 CACHE_STORE=database
 QUEUE_CONNECTION=database
@@ -190,8 +190,8 @@ On the VPS:
 
 ```bash
 git clone --depth=1 https://github.com/Lawrencekawalya/docuflow-ug-website.git /tmp/docuflow-bootstrap
-cp /tmp/docuflow-bootstrap/deploy/nginx/docuflowug.syntaxsystems.com.conf /etc/nginx/sites-available/docuflowug.syntaxsystems.com
-ln -s /etc/nginx/sites-available/docuflowug.syntaxsystems.com /etc/nginx/sites-enabled/docuflowug.syntaxsystems.com
+cp /tmp/docuflow-bootstrap/deploy/nginx/docuflowug.syntaxsystems.co.conf /etc/nginx/sites-available/docuflowug.syntaxsystems.co
+ln -s /etc/nginx/sites-available/docuflowug.syntaxsystems.co /etc/nginx/sites-enabled/docuflowug.syntaxsystems.co
 cp /tmp/docuflow-bootstrap/deploy/systemd/docuflowug-queue.service /etc/systemd/system/docuflowug-queue.service
 nginx -t
 systemctl reload nginx
@@ -246,7 +246,7 @@ After it succeeds, verify on the VPS:
 ```bash
 readlink -f /var/www/docuflowug/current
 sudo -u deployer php /var/www/docuflowug/current/artisan about --only=environment
-curl -H 'Host: docuflowug.syntaxsystems.com' http://127.0.0.1/up
+curl -H 'Host: docuflowug.syntaxsystems.co' http://127.0.0.1/up
 ```
 
 The health endpoint should return `Application up`.
@@ -271,20 +271,20 @@ journalctl -u docuflowug-queue -n 100 --no-pager
 Only continue after DNS resolves to the VPS and HTTP works publicly. Install Certbot using its current official Nginx instructions, then request the certificate:
 
 ```bash
-certbot --nginx -d docuflowug.syntaxsystems.com --redirect
+certbot --nginx -d docuflowug.syntaxsystems.co --redirect
 certbot renew --dry-run
 ```
 
 Verify:
 
 ```bash
-curl -I https://docuflowug.syntaxsystems.com
-curl https://docuflowug.syntaxsystems.com/up
+curl -I https://docuflowug.syntaxsystems.co
+curl https://docuflowug.syntaxsystems.co/up
 ```
 
 ## 10. End-to-end lead test
 
-1. Open `https://docuflowug.syntaxsystems.com/contact` on a real phone.
+1. Open `https://docuflowug.syntaxsystems.co/contact` on a real phone.
 2. Submit a clearly labelled controlled test request.
 3. Confirm the success message appears.
 4. On the VPS, confirm a row exists in `demo_requests`.
