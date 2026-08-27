@@ -1,7 +1,7 @@
 export type PricingPlanConfig = {
-    monthly: number | string | null;
-    setup: number | string | null;
-    allowance: number | string | null;
+    monthly: number | string;
+    setup: number | string;
+    allowance: number | string;
 };
 
 export type DocuflowPublicConfig = {
@@ -14,5 +14,9 @@ export type DocuflowPublicConfig = {
         starter: PricingPlanConfig;
         growth: PricingPlanConfig;
         professional: PricingPlanConfig;
+        terms: {
+            overage: string;
+            cancellation: string;
+        };
     };
 };

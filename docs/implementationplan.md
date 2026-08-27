@@ -77,6 +77,10 @@ The public marketing experience will use a separate layout and component family 
 - The five-step product story is Receive, Read, Extract/Structure, Validate, and Deliver.
 - Research statistics must be presented with their sample size and without exaggeration.
 - Starter pricing is supported at **UGX 150,000/month plus UGX 500,000 setup**.
+- Starter includes 100 documents/month; Growth is UGX 300,000/month plus UGX 500,000 setup for 300 documents/month; Professional is UGX 500,000/month plus UGX 750,000 setup for 750 documents/month.
+- Overage is UGX 1,000 per additional document, with notice before recurring overage charges are applied.
+- Plans are month-to-month and may be cancelled before the next billing cycle; setup fees become non-refundable once implementation and configuration work begins.
+- Public contact details are `lawkawalya@gmail.com`, `+256 755400297`, and WhatsApp `+256 778864614`.
 - Security wording must describe real practices and avoid unsupported certification or absolute-security claims.
 - WhatsApp must be a prominent contact option, especially on mobile.
 - Runtime and production builds must not depend on remote font downloads. Use the current system font stack or a locally hosted font asset.
@@ -85,13 +89,6 @@ The public marketing experience will use a separate layout and component family 
 
 The following values must be supplied and approved before publishing the site:
 
-- Growth monthly price, setup fee, and document allowance;
-- Professional monthly price, setup fee, and document allowance;
-- Starter monthly document allowance;
-- overage rules;
-- minimum contract or cancellation policy;
-- official business email address;
-- official phone and WhatsApp numbers;
 - final founder biography and any approved business address;
 - destination email, CRM, or automation webhook for demo requests; and
 - privacy-policy wording and data-retention period for submitted leads.

@@ -37,20 +37,22 @@ The database remains the source of truth if notification delivery is temporarily
 
 ## Public business configuration
 
-The site deliberately does not invent commercial or contact information. Add the approved values to `.env` before launch:
+The approved public commercial and contact values are the application defaults. They may be overridden in `.env` when the business changes them:
 
 ```dotenv
-DOCUFLOW_CONTACT_EMAIL=
-DOCUFLOW_PHONE=
-DOCUFLOW_WHATSAPP_NUMBER=
+DOCUFLOW_CONTACT_EMAIL=lawkawalya@gmail.com
+DOCUFLOW_PHONE="+256 755400297"
+DOCUFLOW_WHATSAPP_NUMBER="+256 778864614"
 
-DOCUFLOW_STARTER_DOCUMENT_ALLOWANCE=
-DOCUFLOW_GROWTH_MONTHLY_PRICE=
-DOCUFLOW_GROWTH_SETUP_FEE=
-DOCUFLOW_GROWTH_DOCUMENT_ALLOWANCE=
-DOCUFLOW_PROFESSIONAL_MONTHLY_PRICE=
-DOCUFLOW_PROFESSIONAL_SETUP_FEE=
-DOCUFLOW_PROFESSIONAL_DOCUMENT_ALLOWANCE=
+DOCUFLOW_STARTER_DOCUMENT_ALLOWANCE=100
+DOCUFLOW_GROWTH_MONTHLY_PRICE=300000
+DOCUFLOW_GROWTH_SETUP_FEE=500000
+DOCUFLOW_GROWTH_DOCUMENT_ALLOWANCE=300
+DOCUFLOW_PROFESSIONAL_MONTHLY_PRICE=500000
+DOCUFLOW_PROFESSIONAL_SETUP_FEE=750000
+DOCUFLOW_PROFESSIONAL_DOCUMENT_ALLOWANCE=750
+DOCUFLOW_OVERAGE_POLICY="Additional documents above the monthly allowance are charged at UGX 1,000 per document. Customers are notified before recurring overage charges are applied."
+DOCUFLOW_CANCELLATION_POLICY="Month-to-month subscription. No long-term contract is required. Customers may cancel before the next billing cycle. Setup fees are one-time and non-refundable once implementation and configuration work has started."
 ```
 
 WhatsApp numbers should use international format. For example, a Ugandan number begins with `256` and contains digits only in the generated WhatsApp URL.

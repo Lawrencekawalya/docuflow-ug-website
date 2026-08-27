@@ -105,7 +105,7 @@ const whatsappUrl = config.contact.whatsapp
                     <Link :href="privacy()" class="hover:text-white"
                         >Privacy</Link
                     >
-                    <span>Reliable. Local. Practical. Secure.</span>
+                    <span>Reliable. Local. Practical. Security-conscious.</span>
                 </div>
             </div>
         </div>

@@ -140,16 +140,6 @@ const inputClass =
                         class="flex min-h-12 items-center gap-3 rounded-xl bg-emerald-600 px-4 font-bold text-white"
                         ><MessageCircle class="size-5" />Chat on WhatsApp</a
                     >
-                    <div
-                        v-if="
-                            !config.email && !config.phone && !config.whatsapp
-                        "
-                        class="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-950"
-                    >
-                        <strong>Pre-launch gate:</strong> add the approved
-                        professional email, telephone and WhatsApp details to
-                        the environment configuration.
-                    </div>
                 </div>
             </aside>
 

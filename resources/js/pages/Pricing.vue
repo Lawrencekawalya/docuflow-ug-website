@@ -9,16 +9,12 @@ import type { DocuflowPublicConfig, PricingPlanConfig } from '@/types';
 const pricingConfig = (usePage().props.docuflow as DocuflowPublicConfig)
     .pricing;
 
-const formatUgx = (value: number | string | null): string | null => {
-    if (value === null || value === '') {
-        return null;
-    }
-
+const formatUgx = (value: number | string): string => {
     const amount = Number(value);
 
     return Number.isFinite(amount)
         ? `UGX ${new Intl.NumberFormat('en-UG').format(amount)}`
-        : null;
+        : String(value);
 };
 
 const plans: Array<{
@@ -86,12 +82,9 @@ const faqs = [
     ],
     [
         'What happens if I exceed my document allowance?',
-        'The overage policy will be agreed clearly before service begins. Final published allowances and overage rates must be approved before launch.',
+        pricingConfig.terms.overage,
     ],
-    [
-        'Do I have to sign a long contract?',
-        'The final contract and cancellation policy will be shown here once the commercial terms are approved.',
-    ],
+    ['Do I have to sign a long contract?', pricingConfig.terms.cancellation],
 ];
 </script>
 
@@ -148,37 +141,18 @@ const faqs = [
                         {{ plan.description }}
                     </p>
                     <div class="mt-6 border-y border-slate-100 py-6">
-                        <template v-if="formatUgx(plan.config.monthly)"
-                            ><p
-                                class="text-3xl font-extrabold tracking-tight text-slate-950"
-                            >
-                                {{ formatUgx(plan.config.monthly) }}
-                            </p>
-                            <p class="mt-1 text-sm text-slate-500">
-                                per month
-                            </p></template
-                        ><template v-else
-                            ><p class="text-lg font-extrabold text-amber-700">
-                                Final rate pending approval
-                            </p>
-                            <p class="mt-1 text-sm text-slate-500">
-                                Must be published before launch
-                            </p></template
+                        <p
+                            class="text-3xl font-extrabold tracking-tight text-slate-950"
                         >
+                            {{ formatUgx(plan.config.monthly) }}
+                        </p>
+                        <p class="mt-1 text-sm text-slate-500">per month</p>
                         <p class="mt-4 text-sm font-bold text-slate-800">
-                            Setup:
-                            {{
-                                formatUgx(plan.config.setup) ??
-                                'Pending approval'
-                            }}
+                            Setup: {{ formatUgx(plan.config.setup) }}
                         </p>
                         <p class="mt-2 text-sm text-slate-600">
                             Allowance:
-                            {{
-                                plan.config.allowance
-                                    ? `${plan.config.allowance} documents/month`
-                                    : 'Pending approval'
-                            }}
+                            {{ plan.config.allowance }} documents/month
                         </p>
                     </div>
                     <ul class="mt-6 grid gap-3 text-sm text-slate-700">
@@ -203,18 +177,6 @@ const faqs = [
                         >Start With a Demo</Link
                     >
                 </article>
-            </div>
-            <div
-                v-if="
-                    !formatUgx(pricingConfig.growth.monthly) ||
-                    !formatUgx(pricingConfig.professional.monthly)
-                "
-                class="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-7 text-amber-950"
-            >
-                <strong>Pre-launch commercial gate:</strong> Growth and
-                Professional prices, allowances, setup fees and overage terms
-                are intentionally not invented. Add the approved values to the
-                DocuFlow environment configuration before this page goes live.
             </div>
         </div>
     </section>
