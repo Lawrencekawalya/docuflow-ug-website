@@ -2,13 +2,13 @@
 
 return [
     'contact' => [
-        'email' => env('DOCUFLOW_CONTACT_EMAIL') ?: 'lawkawalya@gmail.com',
+        'email' => env('DOCUFLOW_CONTACT_EMAIL') ?: 'support@syntaxsystems.co',
         'phone' => env('DOCUFLOW_PHONE') ?: '+256 755400297',
         'whatsapp' => env('DOCUFLOW_WHATSAPP_NUMBER') ?: '+256 778864614',
     ],
 
     'leads' => [
-        'email' => env('DOCUFLOW_LEADS_EMAIL'),
+        'email' => env('DOCUFLOW_LEADS_EMAIL') ?: 'support@syntaxsystems.co',
     ],
 
     'pricing' => [

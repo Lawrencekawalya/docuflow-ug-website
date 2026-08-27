@@ -17,15 +17,18 @@ The public website is available at `/`; the existing authenticated application r
 Every valid demo request is saved to the `demo_requests` table before an email notification is queued. Configure a real recipient and mail transport before launch:
 
 ```dotenv
-DOCUFLOW_LEADS_EMAIL=leads@your-approved-domain.example
+DOCUFLOW_LEADS_EMAIL=support@syntaxsystems.co
 MAIL_MAILER=smtp
-MAIL_HOST=
+MAIL_SCHEME=tls
+MAIL_HOST=mail.syntaxsystems.co
 MAIL_PORT=587
-MAIL_USERNAME=
+MAIL_USERNAME=support
 MAIL_PASSWORD=
-MAIL_FROM_ADDRESS=
+MAIL_FROM_ADDRESS=support@syntaxsystems.co
 MAIL_FROM_NAME="DocuFlow UG"
 ```
+
+Set `MAIL_PASSWORD` only in the private environment file on the target machine; never commit it. This project reads `MAIL_SCHEME=tls` for SMTP transport encryption, not `MAIL_ENCRYPTION`.
 
 Run a queue worker when `QUEUE_CONNECTION` is asynchronous:
 
@@ -40,7 +43,7 @@ The database remains the source of truth if notification delivery is temporarily
 The approved public commercial and contact values are the application defaults. They may be overridden in `.env` when the business changes them:
 
 ```dotenv
-DOCUFLOW_CONTACT_EMAIL=lawkawalya@gmail.com
+DOCUFLOW_CONTACT_EMAIL=support@syntaxsystems.co
 DOCUFLOW_PHONE="+256 755400297"
 DOCUFLOW_WHATSAPP_NUMBER="+256 778864614"
 

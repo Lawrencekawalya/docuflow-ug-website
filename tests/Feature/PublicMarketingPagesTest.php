@@ -48,7 +48,7 @@ class PublicMarketingPagesTest extends TestCase
         $this->get(route('pricing'))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
-                ->where('docuflow.contact.email', 'lawkawalya@gmail.com')
+                ->where('docuflow.contact.email', 'support@syntaxsystems.co')
                 ->where('docuflow.contact.phone', '+256 755400297')
                 ->where('docuflow.contact.whatsapp', '+256 778864614')
                 ->where('docuflow.pricing.starter.monthly', 150000)
@@ -62,5 +62,7 @@ class PublicMarketingPagesTest extends TestCase
                 ->where('docuflow.pricing.professional.allowance', 750)
                 ->where('docuflow.pricing.terms.overage', config('docuflow.pricing.terms.overage'))
                 ->where('docuflow.pricing.terms.cancellation', config('docuflow.pricing.terms.cancellation')));
+
+        $this->assertSame('support@syntaxsystems.co', config('docuflow.leads.email'));
     }
 }

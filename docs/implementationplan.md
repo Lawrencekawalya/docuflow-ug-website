@@ -80,7 +80,7 @@ The public marketing experience will use a separate layout and component family 
 - Starter includes 100 documents/month; Growth is UGX 300,000/month plus UGX 500,000 setup for 300 documents/month; Professional is UGX 500,000/month plus UGX 750,000 setup for 750 documents/month.
 - Overage is UGX 1,000 per additional document, with notice before recurring overage charges are applied.
 - Plans are month-to-month and may be cancelled before the next billing cycle; setup fees become non-refundable once implementation and configuration work begins.
-- Public contact details are `lawkawalya@gmail.com`, `+256 755400297`, and WhatsApp `+256 778864614`.
+- Public contact details are `support@syntaxsystems.co`, `+256 755400297`, and WhatsApp `+256 778864614`.
 - Security wording must describe real practices and avoid unsupported certification or absolute-security claims.
 - WhatsApp must be a prominent contact option, especially on mobile.
 - Runtime and production builds must not depend on remote font downloads. Use the current system font stack or a locally hosted font asset.

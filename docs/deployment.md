@@ -171,17 +171,17 @@ QUEUE_CONNECTION=database
 
 MAIL_MAILER=smtp
 MAIL_SCHEME=tls
-MAIL_HOST=CHANGE_ME
+MAIL_HOST=mail.syntaxsystems.co
 MAIL_PORT=587
-MAIL_USERNAME=CHANGE_ME
+MAIL_USERNAME=support
 MAIL_PASSWORD=CHANGE_ME
-MAIL_FROM_ADDRESS=CHANGE_ME
+MAIL_FROM_ADDRESS=support@syntaxsystems.co
 MAIL_FROM_NAME="DocuFlow UG"
 
-DOCUFLOW_CONTACT_EMAIL=lawkawalya@gmail.com
+DOCUFLOW_CONTACT_EMAIL=support@syntaxsystems.co
 DOCUFLOW_PHONE="+256 755400297"
 DOCUFLOW_WHATSAPP_NUMBER="+256 778864614"
-DOCUFLOW_LEADS_EMAIL=CHANGE_ME
+DOCUFLOW_LEADS_EMAIL=support@syntaxsystems.co
 
 DOCUFLOW_STARTER_DOCUMENT_ALLOWANCE=100
 DOCUFLOW_GROWTH_MONTHLY_PRICE=300000
@@ -193,6 +193,8 @@ DOCUFLOW_PROFESSIONAL_DOCUMENT_ALLOWANCE=750
 DOCUFLOW_OVERAGE_POLICY="Additional documents above the monthly allowance are charged at UGX 1,000 per document. Customers are notified before recurring overage charges are applied."
 DOCUFLOW_CANCELLATION_POLICY="Month-to-month subscription. No long-term contract is required. Customers may cancel before the next billing cycle. Setup fees are one-time and non-refundable once implementation and configuration work has started."
 ```
+
+Replace only `MAIL_PASSWORD=CHANGE_ME` with the real mailbox password directly on the server. Do not commit it or paste it into CI logs. Laravel reads `MAIL_SCHEME=tls` in this project; `MAIL_ENCRYPTION` is not used.
 
 Protect it:
 
