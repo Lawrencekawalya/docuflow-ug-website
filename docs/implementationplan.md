@@ -56,7 +56,7 @@ Before submission:
 
 The implementation will build on the current application rather than replace its stack:
 
-- Laravel 13 and PHP 8.3+
+- Laravel 13 and PHP 8.4+
 - Inertia.js 3
 - Vue 3 with TypeScript
 - Tailwind CSS 4
