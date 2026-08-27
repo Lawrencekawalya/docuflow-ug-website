@@ -1,0 +1,486 @@
+Yes. Since the Business Projection and MVP are now aligned, the website should become the client-facing sales layer for DocuFlow UG. It should not look like an n8n course project. A visitor should understand within seconds what problem DocuFlow solves, how it works, what it costs, why they should trust it, and how to request a demo.
+
+I would build it as a polished 5-page website rather than putting everything on one long page.
+
+1. Homepage — /
+
+This is the sales page and should answer four questions immediately: What is this? Who is it for? What benefit do I get? What should I do next?
+
+Navigation
+
+Use a simple sticky navigation:
+
+DocuFlow UG logo | Home | How It Works | Pricing | About | Contact | Request Demo
+
+The Request Demo button should be visually prominent.
+
+Hero section
+
+Primary headline:
+
+Turn Business Documents Into Ready-to-Use Data — Automatically
+
+Supporting copy:
+
+DocuFlow UG helps accounting firms and document-heavy businesses reduce manual data entry by automatically extracting, validating and organizing information from invoices, receipts and other business documents.
+
+Primary CTA:
+
+Request a Free Demo
+
+Secondary CTA:
+
+See How It Works
+
+We should include a professional product visual beside the copy—not a generic robot. Ideally it shows the concept:
+
+Document → AI processing → validated structured data → business system
+
+Problem section
+
+Heading:
+
+Still Processing Business Documents by Hand?
+
+Then address the problems uncovered in our interviews:
+
+Hours lost to manual data entry
+Staff repeatedly read documents and copy information into spreadsheets or systems.
+
+Human errors
+Prices, totals and other information can be entered incorrectly.
+
+Slow processing
+Documents pass through multiple manual steps before reaching the right person.
+
+Poor document tracking
+Manual processes make it harder to know what has been processed and what still needs attention.
+
+Then connect this to our research:
+
+In our initial customer research, all five interviewed businesses reported document-processing errors or operational problems occurring monthly.
+
+That's a genuine research finding and a good trust signal.
+
+Solution section
+
+Heading:
+
+Let DocuFlow Handle the Repetitive Work
+
+A simple visual flow:
+
+1. Receive → 2. Read → 3. Extract → 4. Validate → 5. Deliver
+
+Short explanation:
+
+DocuFlow receives your business documents, uses AI to extract the information you need, checks and structures the results, and delivers clean data into your agreed workflow.
+
+Avoid talking about nodes, webhooks, JSON, tokens or n8n here.
+
+Benefits section
+
+Use four benefit cards:
+
+Save Staff Time
+Reduce repetitive reading and data-entry work.
+
+Reduce Manual Errors
+Structured extraction reduces copying mistakes.
+
+Process Faster
+Move documents through your workflow without unnecessary manual steps.
+
+Keep Visibility
+Processing status and failures can be monitored instead of disappearing silently.
+
+Trust/research section
+
+Heading:
+
+Built Around Real Business Needs
+
+We can use actual findings:
+
+5 businesses interviewed
+3.8/5 average automation interest
+5/5 reported monthly document-processing problems
+4/5 indicated potential paying-customer interest
+
+But use careful wording around that last number. It represents stated intent, not actual customers.
+
+Security section
+
+This deserves visibility because the interviews repeatedly raised it.
+
+Heading:
+
+Your Business Data Deserves Careful Handling
+
+Explain simply that DocuFlow is designed around controlled access, secure credentials, input validation, monitored processing and appropriate handling of failures.
+
+Do not make unsupported claims like “military-grade encryption,” “100% secure,” or compliance certifications we don't possess.
+
+Final CTA
+
+See What DocuFlow Could Automate for Your Business
+
+Request a demonstration using a realistic document from your workflow.
+
+Request a Free Demo
+
+2. How It Works — /how-it-works
+
+This page explains the actual product without overwhelming nontechnical customers.
+
+Hero:
+
+From Document to Structured Data in Five Steps
+
+Supporting copy:
+
+DocuFlow works alongside your existing business process, reducing repetitive document handling without requiring your team to understand AI or automation technology.
+
+Then show the five stages.
+
+Step 1 — Submit Your Document
+
+Send an invoice, receipt or supported business document through the configured intake process.
+
+Visual: document/email/upload icon.
+
+Step 2 — DocuFlow Reads It
+
+The system identifies and extracts the important business information from the document.
+
+Visual: document with highlighted fields.
+
+Step 3 — Information Is Structured
+
+Extracted information is converted into a consistent format your business can actually use.
+
+Visual: messy document → clean table.
+
+Step 4 — Processing Is Checked
+
+The workflow validates the information and handles processing problems through monitored failure paths.
+
+This is where our production-ready MVP becomes a selling point.
+
+Step 5 — Results Reach Your Workflow
+
+The processed information is delivered to the agreed destination, ready for review or the next business action.
+
+Then include a visual diagram:
+
+Invoice / Receipt / Document
+↓
+DocuFlow
+↓
+Extract → Validate → Structure → Monitor
+↓
+Spreadsheet / Record / Notification / Business Workflow
+
+What happens when something goes wrong?
+
+This section differentiates us from a toy automation.
+
+DocuFlow includes monitoring and failure handling so that processing problems can be identified and investigated rather than silently producing incorrect results.
+
+Mention logging, retries where appropriate, failure records and notifications, but in customer language.
+
+Example use cases
+
+Show perhaps four:
+
+Invoice processing
+Extract supplier, invoice number, date, totals and relevant fields.
+
+Receipt processing
+Capture payment information without repetitive typing.
+
+Business-document intake
+Register and structure incoming documents.
+
+Document routing
+Send processed information to the appropriate business destination.
+
+CTA
+
+Want to see it process a real document?
+
+Request a Demo
+
+3. Pricing — /pricing
+
+This needs special attention because the assignment specifically penalizes vague pricing.
+
+The website should have transparent UGX pricing.
+
+Our interviews support an entry point around UGX 150,000/month, while document volume varies dramatically. That suggests volume-based tiers.
+
+I would propose three website packages, but distinguish the interview-informed launch offer from future scale tiers.
+
+Starter
+
+UGX 150,000/month
+
+Best for smaller teams starting document automation.
+
+Possible scope:
+
+One automated document workflow
+Defined monthly document allowance
+AI-assisted extraction
+Structured output
+Basic monitoring
+Standard support
+
+Setup: UGX 500,000
+
+CTA: Start With a Demo
+
+Growth
+
+We should not invent a final price without cost/volume validation. Before publishing, we should derive this from expected document allowances and support requirements. A reasonable website architecture is nevertheless:
+
+Growth
+For businesses processing larger recurring document volumes.
+
+Includes Starter plus additional document capacity, additional workflow integration, enhanced reporting and priority support.
+
+Professional
+
+For higher-volume or more customized operations.
+
+Could include multiple workflows, higher document capacity, advanced integrations, reporting and priority onboarding/support.
+
+The important thing is that we should calculate Growth and Professional prices before putting numbers on the live site. The assignment wants transparent rates, so they cannot ultimately say “Contact us.”
+
+Under the cards:
+
+Every plan includes
+
+Secure credential handling
+Workflow monitoring
+Error handling
+AI usage awareness
+Initial onboarding
+Support
+
+Pilot section
+
+Not Ready to Commit? Start With a Demonstration
+
+The interviews showed customers want evidence before paying.
+
+We'll demonstrate DocuFlow against a realistic workflow so you can evaluate accuracy, processing time and fit before making a longer-term decision.
+
+Pricing FAQ
+
+Include:
+
+Why is there a setup fee?
+
+Every business handles documents differently. Setup covers workflow discovery, configuration, testing, integration and onboarding.
+
+Can I change plans?
+
+Yes. Your plan can be adjusted as document volume or workflow requirements change.
+
+What happens if I exceed my document allowance?
+
+We will define the exact overage policy once we've finalized the tiers.
+
+Do I have to sign a long contract?
+
+Only state the actual commercial policy we decide.
+
+4. About — /about
+
+This should build trust without turning into a long biography.
+
+Hero:
+
+Local Automation Built for Practical Business Problems
+
+Then:
+
+Our Story
+
+Explain that DocuFlow UG was developed to address repetitive business-document processing experienced by Ugandan SMEs.
+
+We can say the solution was built and tested as a functioning automation system rather than merely conceptualized.
+
+Our Approach
+
+Three principles:
+
+Start With the Business Problem
+
+We first understand where staff time is being lost and where errors occur.
+
+Prove Value Before Scaling
+
+Demonstrations and pilots help establish whether automation genuinely improves the workflow.
+
+Keep Humans in Control
+
+Automation should support business teams, not hide important decisions behind technology.
+
+Research-led development
+
+This is useful for the capstone and clients.
+
+Before finalizing the launch offer, DocuFlow conducted interviews with five businesses in Mbarara. Every respondent reported monthly document-processing problems or errors, while accuracy, security, reliability and processing time emerged as important adoption considerations.
+
+Then explain that those findings influenced pricing and product priorities.
+
+Founder section
+
+Lawrence Kawalya
+Founder / Automation Developer
+
+Professional short biography focusing on relevant skills:
+
+AI-assisted workflow automation, n8n, API integration, document processing, workflow monitoring and business-process automation.
+
+No inflated claims.
+
+Technology
+
+A small section can mention:
+
+n8n | AI APIs | secure credential management | monitored workflow infrastructure
+
+Unlike the homepage, the About page is an appropriate place to acknowledge some underlying technology.
+
+CTA
+
+Talk to Us About Your Workflow
+
+5. Contact / Request Demo — /contact
+
+This is worth 5 marks by itself, so it should be treated as a conversion system, not just a contact page.
+
+Hero:
+
+Let's Find Out What You Can Automate
+
+Supporting text:
+
+Tell us how your team currently handles documents. We'll review the process and show you where DocuFlow could save time and reduce repetitive work.
+
+Demo form
+
+I recommend collecting:
+
+Full Name*
+Business Name*
+Work Email*
+Phone / WhatsApp
+Location
+What type of documents do you process?*
+Approximately how many documents per month?
+How do you currently process them?
+What's your biggest challenge?
+Preferred contact method
+Message / additional details
+
+CTA:
+
+Request My Demo
+
+Not generic Submit.
+
+After submission
+
+The user should receive a polished success message:
+
+Thanks — your demo request has been received. We'll review your workflow information and contact you to arrange the next step.
+
+Behind the scenes, the form must actually deliver the lead to the appropriate email/CRM/workflow.
+
+We should test this end-to-end before submission.
+
+Direct contact options
+
+Below the form:
+
+Professional email
+WhatsApp
+Telephone
+
+Potential clients in Uganda may prefer WhatsApp, so that should be highly visible.
+
+Site-wide design direction
+
+Visually, I would make DocuFlow feel like a professional African B2B technology company, not a generic AI startup.
+
+The design should be clean, spacious and confident: strong typography, restrained brand palette, subtle document/workflow graphics, rounded but professional cards, light animation, and excellent mobile responsiveness.
+
+Avoid robot imagery, glowing AI brains, excessive gradients, fake dashboards, stock photos of people pointing at holograms, and excessive technical terminology.
+
+The visual identity should communicate:
+
+Reliable. Local. Practical. Secure.
+
+6
+Mobile experience
+
+Mobile is not an afterthought.
+
+On phones, the navigation becomes a hamburger menu, CTAs remain large and easy to tap, pricing cards stack vertically, diagrams simplify vertically, forms use large fields, WhatsApp becomes especially prominent, and no horizontal scrolling should occur.
+
+We should test at approximately 360px, 390px and 430px widths.
+
+Recommended site structure
+
+The finished website architecture becomes:
+
+DOCUFLOW UG
+│
+├── Home
+│   ├── Hero
+│   ├── Problems
+│   ├── Solution
+│   ├── Benefits
+│   ├── Research / Trust
+│   ├── Security
+│   └── CTA
+│
+├── How It Works
+│   ├── Five-Step Process
+│   ├── Workflow Diagram
+│   ├── Failure Handling
+│   ├── Use Cases
+│   └── CTA
+│
+├── Pricing
+│   ├── Starter
+│   ├── Growth
+│   ├── Professional
+│   ├── What's Included
+│   ├── Pilot
+│   ├── FAQ
+│   └── CTA
+│
+├── About
+│   ├── Story
+│   ├── Approach
+│   ├── Customer Research
+│   ├── Founder
+│   ├── Technology
+│   └── CTA
+│
+└── Contact
+    ├── Demo Request Form
+    ├── Contact Details
+    ├── WhatsApp
+    └── What Happens Next
+
+Every page should end with a Request Demo CTA, and the navigation should retain that CTA everywhere.
+
+This architecture directly covers all five required Plexaris areas — Homepage, How It Works, Pricing, About/Trust, and Contact/Lead Capture — while giving us enough room to demonstrate professional design rather than squeezing the entire business into one page.
+
+The one item I would settle before coding is the exact Starter/Growth/Professional prices and document allowances. Starter is evidence-backed at UGX 150,000/month + UGX 500,000 setup; the other two should be calculated from the financial model and MVP cost structure so that the website, Business Projection and demo video all tell the same commercial story.

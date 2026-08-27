@@ -1,0 +1,21 @@
+For the website, we should audit what already exists before rebuilding anything. The rubric gives us three scoring areas: professional design & branding (10 marks), required pages/sections (10 marks), and working contact/lead capture (5 marks).
+
+The audit needs to verify one complete checklist:
+
+Homepage: clear DocuFlow UG headline, target customer/problem, value proposition, strong above-the-fold CTA, professional logo/branding.
+How It Works: 3–5 simple customer-facing steps, preferably supported by icons/screenshots/visuals, focusing on outcomes rather than n8n/OpenAI technical details.
+Pricing: transparent prices, setup fee, what's included, support/service expectations. We also need to reconcile the website with our interview-informed UGX 500,000 setup + UGX 150,000/month launch pricing and the assignment's recommendation for 2–3 explicit tiers.
+About / Trust: professional introduction, relevant capability/experience, reasons clients can trust the service, and only genuine testimonials/claims.
+Contact / Lead Capture: working name/email/message form, professional email, phone/WhatsApp, demo-request CTA, and clear explanation of what happens after submission.
+Mobile: navigation, CTA, forms, pricing cards, text, images and buttons must work properly on a smartphone.
+Functional testing: submit the contact/demo form for real and verify that the lead actually reaches its intended destination.
+Consistency: website pricing, customer positioning, claims and product capabilities must match the final Business Projection and MVP.
+Target before we leave Part 3
+
+We want to be able to mark:
+
+Professional design & branding — 10/10
+Required sections — 10/10
+Contact/lead capture — 5/5
+
+Target: 25/25
