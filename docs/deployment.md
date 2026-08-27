@@ -170,7 +170,7 @@ CACHE_STORE=database
 QUEUE_CONNECTION=database
 
 MAIL_MAILER=smtp
-MAIL_SCHEME=tls
+MAIL_SCHEME=smtp
 MAIL_HOST=mail.syntaxsystems.co
 MAIL_PORT=587
 MAIL_USERNAME=support
@@ -194,7 +194,7 @@ DOCUFLOW_OVERAGE_POLICY="Additional documents above the monthly allowance are ch
 DOCUFLOW_CANCELLATION_POLICY="Month-to-month subscription. No long-term contract is required. Customers may cancel before the next billing cycle. Setup fees are one-time and non-refundable once implementation and configuration work has started."
 ```
 
-Replace only `MAIL_PASSWORD=CHANGE_ME` with the real mailbox password directly on the server. Do not commit it or paste it into CI logs. Laravel reads `MAIL_SCHEME=tls` in this project; `MAIL_ENCRYPTION` is not used.
+Replace only `MAIL_PASSWORD=CHANGE_ME` with the real mailbox password directly on the server. Do not commit it or paste it into CI logs. For port 587, use `MAIL_SCHEME=smtp`; Symfony Mailer negotiates STARTTLS when the server supports it. Reserve `MAIL_SCHEME=smtps` for implicit TLS, normally on port 465. This project does not read `MAIL_ENCRYPTION`.
 
 Protect it:
 

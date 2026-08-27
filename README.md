@@ -19,7 +19,7 @@ Every valid demo request is saved to the `demo_requests` table before an email n
 ```dotenv
 DOCUFLOW_LEADS_EMAIL=support@syntaxsystems.co
 MAIL_MAILER=smtp
-MAIL_SCHEME=tls
+MAIL_SCHEME=smtp
 MAIL_HOST=mail.syntaxsystems.co
 MAIL_PORT=587
 MAIL_USERNAME=support
@@ -28,7 +28,7 @@ MAIL_FROM_ADDRESS=support@syntaxsystems.co
 MAIL_FROM_NAME="DocuFlow UG"
 ```
 
-Set `MAIL_PASSWORD` only in the private environment file on the target machine; never commit it. This project reads `MAIL_SCHEME=tls` for SMTP transport encryption, not `MAIL_ENCRYPTION`.
+Set `MAIL_PASSWORD` only in the private environment file on the target machine; never commit it. For port 587, use `MAIL_SCHEME=smtp`; Symfony Mailer will negotiate STARTTLS with a capable SMTP server. Use `MAIL_SCHEME=smtps` only for implicit TLS, normally on port 465. This project does not read `MAIL_ENCRYPTION`.
 
 Run a queue worker when `QUEUE_CONNECTION` is asynchronous:
 
