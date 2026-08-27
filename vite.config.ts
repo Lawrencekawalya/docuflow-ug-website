@@ -36,4 +36,9 @@ export default defineConfig({
             ],
         },
     },
+    ssr: {
+        // Releases do not ship node_modules, so the production SSR bundle must
+        // contain its runtime dependencies.
+        noExternal: true,
+    },
 });

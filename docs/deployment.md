@@ -280,6 +280,15 @@ systemctl status docuflowug-ssr --no-pager
 sudo -u deployer php /var/www/docuflowug/current/artisan inertia:check-ssr
 ```
 
+The shared storage tree must remain writable by both PHP-FPM and the deployer.
+Apply the initial ownership and permissions once as root:
+
+```bash
+chown -R deployer:www-data /var/www/docuflowug/shared/storage
+find /var/www/docuflowug/shared/storage -type d -exec chmod 2775 {} +
+find /var/www/docuflowug/shared/storage -type f -exec chmod 0664 {} +
+```
+
 View worker logs with:
 
 ```bash
