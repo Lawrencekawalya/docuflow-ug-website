@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
+import DocumentHeroPattern from '@/components/marketing/DocumentHeroPattern.vue';
 import { contact } from '@/routes';
 </script>
 
@@ -10,8 +11,11 @@ import { contact } from '@/routes';
             content="How DocuFlow UG handles information submitted through its demo request form."
         />
     </Head>
-    <section class="bg-slate-950 px-5 py-16 text-white sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-4xl">
+    <section
+        class="relative overflow-hidden bg-slate-950 px-5 py-16 text-white sm:px-6 lg:px-8"
+    >
+        <DocumentHeroPattern />
+        <div class="relative z-10 mx-auto max-w-4xl">
             <p
                 class="text-sm font-extrabold tracking-[0.14em] text-blue-400 uppercase"
             >

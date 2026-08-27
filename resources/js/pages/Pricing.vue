@@ -2,6 +2,7 @@
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { Check, CircleDollarSign, HelpCircle } from '@lucide/vue';
 import DemoCta from '@/components/marketing/DemoCta.vue';
+import DocumentHeroPattern from '@/components/marketing/DocumentHeroPattern.vue';
 import SectionHeading from '@/components/marketing/SectionHeading.vue';
 import { contact } from '@/routes';
 import type { DocuflowPublicConfig, PricingPlanConfig } from '@/types';
@@ -95,9 +96,10 @@ const faqs = [
             content="Explore transparent UGX pricing for DocuFlow UG document automation, including setup, monitoring and support."
     /></Head>
     <section
-        class="bg-slate-950 px-5 py-20 text-white sm:px-6 lg:px-8 lg:py-28"
+        class="relative overflow-hidden bg-slate-950 px-5 py-20 text-white sm:px-6 lg:px-8 lg:py-28"
     >
-        <div class="mx-auto max-w-4xl text-center">
+        <DocumentHeroPattern />
+        <div class="relative z-10 mx-auto max-w-4xl text-center">
             <p
                 class="text-sm font-extrabold tracking-[0.14em] text-blue-400 uppercase"
             >

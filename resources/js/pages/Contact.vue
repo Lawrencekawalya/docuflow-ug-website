@@ -10,6 +10,7 @@ import {
 } from '@lucide/vue';
 import { store } from '@/actions/App/Http/Controllers/DemoRequestController';
 import InputError from '@/components/InputError.vue';
+import DocumentHeroPattern from '@/components/marketing/DocumentHeroPattern.vue';
 import { privacy } from '@/routes';
 import type { DocuflowPublicConfig } from '@/types';
 
@@ -36,9 +37,10 @@ const inputClass =
             content="Tell DocuFlow UG how your team handles business documents and request a practical, workflow-focused demonstration."
     /></Head>
     <section
-        class="bg-slate-950 px-5 py-20 text-white sm:px-6 lg:px-8 lg:py-24"
+        class="relative overflow-hidden bg-slate-950 px-5 py-20 text-white sm:px-6 lg:px-8 lg:py-24"
     >
-        <div class="mx-auto max-w-4xl text-center">
+        <DocumentHeroPattern />
+        <div class="relative z-10 mx-auto max-w-4xl text-center">
             <p
                 class="text-sm font-extrabold tracking-[0.14em] text-blue-400 uppercase"
             >
