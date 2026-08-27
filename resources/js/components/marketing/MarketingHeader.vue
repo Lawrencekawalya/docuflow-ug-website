@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { Menu, X } from 'lucide-vue-next';
+import { Menu, X } from '@lucide/vue';
 import { computed, ref } from 'vue';
 import BrandMark from '@/components/marketing/BrandMark.vue';
 import { about, contact, home, howItWorks, pricing } from '@/routes';
@@ -28,7 +28,10 @@ const navigation = [
                 <BrandMark />
             </Link>
 
-            <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+            <nav
+                class="hidden items-center gap-1 lg:flex"
+                aria-label="Primary navigation"
+            >
                 <Link
                     v-for="item in navigation"
                     :key="item.path"
@@ -56,7 +59,9 @@ const navigation = [
                     class="grid size-11 place-items-center rounded-xl border border-slate-200 text-slate-800 transition hover:bg-slate-50 lg:hidden"
                     :aria-expanded="menuOpen"
                     aria-controls="mobile-navigation"
-                    :aria-label="menuOpen ? 'Close navigation' : 'Open navigation'"
+                    :aria-label="
+                        menuOpen ? 'Close navigation' : 'Open navigation'
+                    "
                     @click="menuOpen = !menuOpen"
                 >
                     <X v-if="menuOpen" class="size-5" aria-hidden="true" />

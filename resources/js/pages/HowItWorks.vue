@@ -1,30 +1,243 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import { BellRing, CheckCircle2, FileInput, FileSearch, Route, Table2 } from 'lucide-vue-next';
+import {
+    BellRing,
+    CheckCircle2,
+    FileInput,
+    FileSearch,
+    Route,
+    Table2,
+} from '@lucide/vue';
 import DemoCta from '@/components/marketing/DemoCta.vue';
 import SectionHeading from '@/components/marketing/SectionHeading.vue';
 
 const steps = [
-    { icon: FileInput, title: 'Submit your document', text: 'Send an invoice, receipt or supported business document through the intake process agreed for your team.' },
-    { icon: FileSearch, title: 'DocuFlow reads it', text: 'The system identifies and extracts the important business information from the document.' },
-    { icon: Table2, title: 'Information is structured', text: 'Extracted information is converted into a consistent format your business can actually use.' },
-    { icon: CheckCircle2, title: 'Processing is checked', text: 'The workflow validates information and directs processing problems into monitored failure paths.' },
-    { icon: Route, title: 'Results reach your workflow', text: 'Clean information reaches the agreed destination, ready for review or the next business action.' },
+    {
+        icon: FileInput,
+        title: 'Submit your document',
+        text: 'Send an invoice, receipt or supported business document through the intake process agreed for your team.',
+    },
+    {
+        icon: FileSearch,
+        title: 'DocuFlow reads it',
+        text: 'The system identifies and extracts the important business information from the document.',
+    },
+    {
+        icon: Table2,
+        title: 'Information is structured',
+        text: 'Extracted information is converted into a consistent format your business can actually use.',
+    },
+    {
+        icon: CheckCircle2,
+        title: 'Processing is checked',
+        text: 'The workflow validates information and directs processing problems into monitored failure paths.',
+    },
+    {
+        icon: Route,
+        title: 'Results reach your workflow',
+        text: 'Clean information reaches the agreed destination, ready for review or the next business action.',
+    },
 ];
 const useCases = [
-    ['Invoice processing', 'Extract supplier, invoice number, date, totals and the fields your team needs.'],
-    ['Receipt processing', 'Capture payment information without repetitive typing.'],
-    ['Business-document intake', 'Register and structure incoming documents consistently.'],
-    ['Document routing', 'Send processed information to the appropriate business destination.'],
+    [
+        'Invoice processing',
+        'Extract supplier, invoice number, date, totals and the fields your team needs.',
+    ],
+    [
+        'Receipt processing',
+        'Capture payment information without repetitive typing.',
+    ],
+    [
+        'Business-document intake',
+        'Register and structure incoming documents consistently.',
+    ],
+    [
+        'Document routing',
+        'Send processed information to the appropriate business destination.',
+    ],
 ];
 </script>
 
 <template>
-    <Head title="How It Works"><meta name="description" content="See how DocuFlow UG turns business documents into validated, structured data in five practical steps." /></Head>
-    <section class="bg-slate-950 px-5 py-20 text-white sm:px-6 lg:px-8 lg:py-28"><div class="mx-auto max-w-4xl text-center"><p class="text-sm font-extrabold tracking-[0.14em] text-blue-400 uppercase">How it works</p><h1 class="mt-4 text-4xl font-extrabold tracking-[-0.045em] text-balance sm:text-5xl lg:text-6xl">From document to structured data in five steps</h1><p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300">DocuFlow works alongside your existing business process, reducing repetitive document handling without requiring your team to understand AI or automation technology.</p></div></section>
-    <section class="px-5 py-20 sm:px-6 lg:px-8 lg:py-28"><div class="mx-auto max-w-7xl"><ol class="grid gap-5 lg:grid-cols-5"><li v-for="(step, index) in steps" :key="step.title" class="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><div class="flex items-center justify-between"><span class="grid size-11 place-items-center rounded-xl bg-blue-50 text-blue-700"><component :is="step.icon" class="size-5" /></span><span class="text-3xl font-black text-slate-100">0{{ index + 1 }}</span></div><h2 class="mt-6 text-lg font-extrabold text-slate-950">{{ step.title }}</h2><p class="mt-3 text-sm leading-7 text-slate-600">{{ step.text }}</p></li></ol></div></section>
-    <section class="bg-slate-50 px-5 py-20 sm:px-6 lg:px-8 lg:py-28"><div class="mx-auto max-w-7xl"><SectionHeading eyebrow="The full journey" title="One clear path from intake to action" description="The destination is agreed around your business process—not forced into a one-size-fits-all system." centered /><div class="mt-12 grid items-center gap-3 md:grid-cols-[1fr_auto_1.2fr_auto_1fr]"><div class="rounded-2xl border border-slate-200 bg-white p-6 text-center"><FileInput class="mx-auto size-8 text-blue-600" /><h3 class="mt-3 font-extrabold">Invoice / Receipt / Document</h3><p class="mt-2 text-sm text-slate-500">Your agreed intake channel</p></div><span class="mx-auto rotate-90 text-2xl text-blue-400 md:rotate-0">→</span><div class="rounded-2xl bg-blue-600 p-7 text-center text-white shadow-xl shadow-blue-600/20"><p class="text-xs font-bold tracking-widest text-blue-100 uppercase">DocuFlow</p><h3 class="mt-2 text-xl font-extrabold">Extract → Validate → Structure → Monitor</h3></div><span class="mx-auto rotate-90 text-2xl text-blue-400 md:rotate-0">→</span><div class="rounded-2xl border border-slate-200 bg-white p-6 text-center"><Table2 class="mx-auto size-8 text-emerald-600" /><h3 class="mt-3 font-extrabold">Spreadsheet / Record / Notification</h3><p class="mt-2 text-sm text-slate-500">Ready for the next action</p></div></div></div></section>
-    <section class="px-5 py-20 sm:px-6 lg:px-8 lg:py-28"><div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center"><div><SectionHeading eyebrow="Built for real operations" title="What happens when something goes wrong?" description="Processing problems should be visible and investigated—not silently produce a bad result." /><div class="mt-7 grid gap-3 text-sm text-slate-700"><p class="flex gap-3"><CheckCircle2 class="mt-0.5 size-5 shrink-0 text-emerald-600" /> Failed items can be recorded for follow-up.</p><p class="flex gap-3"><CheckCircle2 class="mt-0.5 size-5 shrink-0 text-emerald-600" /> Appropriate retries can handle temporary service interruptions.</p><p class="flex gap-3"><CheckCircle2 class="mt-0.5 size-5 shrink-0 text-emerald-600" /> Notifications can alert the right person when attention is needed.</p></div></div><div class="rounded-3xl border border-amber-200 bg-amber-50 p-8"><BellRing class="size-10 text-amber-700" /><p class="mt-6 text-xs font-bold tracking-widest text-amber-800 uppercase">Attention required</p><h3 class="mt-2 text-2xl font-extrabold text-slate-950">A document needs review</h3><p class="mt-4 leading-7 text-slate-600">The workflow records the issue and makes it visible so a team member can investigate the document instead of trusting incomplete information.</p></div></div></section>
-    <section class="bg-blue-50 px-5 py-20 sm:px-6 lg:px-8"><div class="mx-auto max-w-7xl"><SectionHeading eyebrow="Example use cases" title="Start with the documents slowing your team down" centered /><div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"><article v-for="([title, text]) in useCases" :key="title" class="rounded-2xl bg-white p-6 shadow-sm"><h3 class="font-extrabold text-slate-950">{{ title }}</h3><p class="mt-3 text-sm leading-7 text-slate-600">{{ text }}</p></article></div></div></section>
+    <Head title="How It Works"
+        ><meta
+            name="description"
+            content="See how DocuFlow UG turns business documents into validated, structured data in five practical steps."
+    /></Head>
+    <section
+        class="bg-slate-950 px-5 py-20 text-white sm:px-6 lg:px-8 lg:py-28"
+    >
+        <div class="mx-auto max-w-4xl text-center">
+            <p
+                class="text-sm font-extrabold tracking-[0.14em] text-blue-400 uppercase"
+            >
+                How it works
+            </p>
+            <h1
+                class="mt-4 text-4xl font-extrabold tracking-[-0.045em] text-balance sm:text-5xl lg:text-6xl"
+            >
+                From document to structured data in five steps
+            </h1>
+            <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+                DocuFlow works alongside your existing business process,
+                reducing repetitive document handling without requiring your
+                team to understand AI or automation technology.
+            </p>
+        </div>
+    </section>
+    <section class="px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <div class="mx-auto max-w-7xl">
+            <ol class="grid gap-5 lg:grid-cols-5">
+                <li
+                    v-for="(step, index) in steps"
+                    :key="step.title"
+                    class="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                >
+                    <div class="flex items-center justify-between">
+                        <span
+                            class="grid size-11 place-items-center rounded-xl bg-blue-50 text-blue-700"
+                            ><component :is="step.icon" class="size-5" /></span
+                        ><span class="text-3xl font-black text-slate-100"
+                            >0{{ index + 1 }}</span
+                        >
+                    </div>
+                    <h2 class="mt-6 text-lg font-extrabold text-slate-950">
+                        {{ step.title }}
+                    </h2>
+                    <p class="mt-3 text-sm leading-7 text-slate-600">
+                        {{ step.text }}
+                    </p>
+                </li>
+            </ol>
+        </div>
+    </section>
+    <section class="bg-slate-50 px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <div class="mx-auto max-w-7xl">
+            <SectionHeading
+                eyebrow="The full journey"
+                title="One clear path from intake to action"
+                description="The destination is agreed around your business process—not forced into a one-size-fits-all system."
+                centered
+            />
+            <div
+                class="mt-12 grid items-center gap-3 md:grid-cols-[1fr_auto_1.2fr_auto_1fr]"
+            >
+                <div
+                    class="rounded-2xl border border-slate-200 bg-white p-6 text-center"
+                >
+                    <FileInput class="mx-auto size-8 text-blue-600" />
+                    <h3 class="mt-3 font-extrabold">
+                        Invoice / Receipt / Document
+                    </h3>
+                    <p class="mt-2 text-sm text-slate-500">
+                        Your agreed intake channel
+                    </p>
+                </div>
+                <span
+                    class="mx-auto rotate-90 text-2xl text-blue-400 md:rotate-0"
+                    >→</span
+                >
+                <div
+                    class="rounded-2xl bg-blue-600 p-7 text-center text-white shadow-xl shadow-blue-600/20"
+                >
+                    <p
+                        class="text-xs font-bold tracking-widest text-blue-100 uppercase"
+                    >
+                        DocuFlow
+                    </p>
+                    <h3 class="mt-2 text-xl font-extrabold">
+                        Extract → Validate → Structure → Monitor
+                    </h3>
+                </div>
+                <span
+                    class="mx-auto rotate-90 text-2xl text-blue-400 md:rotate-0"
+                    >→</span
+                >
+                <div
+                    class="rounded-2xl border border-slate-200 bg-white p-6 text-center"
+                >
+                    <Table2 class="mx-auto size-8 text-emerald-600" />
+                    <h3 class="mt-3 font-extrabold">
+                        Spreadsheet / Record / Notification
+                    </h3>
+                    <p class="mt-2 text-sm text-slate-500">
+                        Ready for the next action
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <div
+            class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center"
+        >
+            <div>
+                <SectionHeading
+                    eyebrow="Built for real operations"
+                    title="What happens when something goes wrong?"
+                    description="Processing problems should be visible and investigated—not silently produce a bad result."
+                />
+                <div class="mt-7 grid gap-3 text-sm text-slate-700">
+                    <p class="flex gap-3">
+                        <CheckCircle2
+                            class="mt-0.5 size-5 shrink-0 text-emerald-600"
+                        />
+                        Failed items can be recorded for follow-up.
+                    </p>
+                    <p class="flex gap-3">
+                        <CheckCircle2
+                            class="mt-0.5 size-5 shrink-0 text-emerald-600"
+                        />
+                        Appropriate retries can handle temporary service
+                        interruptions.
+                    </p>
+                    <p class="flex gap-3">
+                        <CheckCircle2
+                            class="mt-0.5 size-5 shrink-0 text-emerald-600"
+                        />
+                        Notifications can alert the right person when attention
+                        is needed.
+                    </p>
+                </div>
+            </div>
+            <div class="rounded-3xl border border-amber-200 bg-amber-50 p-8">
+                <BellRing class="size-10 text-amber-700" />
+                <p
+                    class="mt-6 text-xs font-bold tracking-widest text-amber-800 uppercase"
+                >
+                    Attention required
+                </p>
+                <h3 class="mt-2 text-2xl font-extrabold text-slate-950">
+                    A document needs review
+                </h3>
+                <p class="mt-4 leading-7 text-slate-600">
+                    The workflow records the issue and makes it visible so a
+                    team member can investigate the document instead of trusting
+                    incomplete information.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="bg-blue-50 px-5 py-20 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+            <SectionHeading
+                eyebrow="Example use cases"
+                title="Start with the documents slowing your team down"
+                centered
+            />
+            <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <article
+                    v-for="[title, text] in useCases"
+                    :key="title"
+                    class="rounded-2xl bg-white p-6 shadow-sm"
+                >
+                    <h3 class="font-extrabold text-slate-950">{{ title }}</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-600">
+                        {{ text }}
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
     <DemoCta title="Want to see it process a real document?" />
 </template>
