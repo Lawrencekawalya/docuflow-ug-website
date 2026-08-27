@@ -15,17 +15,17 @@ return [
         'starter' => [
             'monthly' => 150000,
             'setup' => 500000,
-            'allowance' => env('DOCUFLOW_STARTER_DOCUMENT_ALLOWANCE') ?: 100,
+            'allowance' => (int) (env('DOCUFLOW_STARTER_DOCUMENT_ALLOWANCE') ?: 100),
         ],
         'growth' => [
-            'monthly' => env('DOCUFLOW_GROWTH_MONTHLY_PRICE') ?: 300000,
-            'setup' => env('DOCUFLOW_GROWTH_SETUP_FEE') ?: 500000,
-            'allowance' => env('DOCUFLOW_GROWTH_DOCUMENT_ALLOWANCE') ?: 300,
+            'monthly' => (int) (env('DOCUFLOW_GROWTH_MONTHLY_PRICE') ?: 300000),
+            'setup' => (int) (env('DOCUFLOW_GROWTH_SETUP_FEE') ?: 500000),
+            'allowance' => (int) (env('DOCUFLOW_GROWTH_DOCUMENT_ALLOWANCE') ?: 300),
         ],
         'professional' => [
-            'monthly' => env('DOCUFLOW_PROFESSIONAL_MONTHLY_PRICE') ?: 500000,
-            'setup' => env('DOCUFLOW_PROFESSIONAL_SETUP_FEE') ?: 750000,
-            'allowance' => env('DOCUFLOW_PROFESSIONAL_DOCUMENT_ALLOWANCE') ?: 750,
+            'monthly' => (int) (env('DOCUFLOW_PROFESSIONAL_MONTHLY_PRICE') ?: 500000),
+            'setup' => (int) (env('DOCUFLOW_PROFESSIONAL_SETUP_FEE') ?: 750000),
+            'allowance' => (int) (env('DOCUFLOW_PROFESSIONAL_DOCUMENT_ALLOWANCE') ?: 750),
         ],
         'terms' => [
             'overage' => env('DOCUFLOW_OVERAGE_POLICY') ?: 'Additional documents above the monthly allowance are charged at UGX 1,000 per document. Customers are notified before recurring overage charges are applied.',
