@@ -1,0 +1,19 @@
+[Unit]
+Description=DocuFlow UG Laravel queue worker
+After=network.target
+ConditionPathExists=/var/www/docuflowug/current/artisan
+
+[Service]
+Type=simple
+User=deployer
+Group=www-data
+WorkingDirectory=/var/www/docuflowug/current
+ExecStart=/usr/bin/php artisan queue:work --sleep=3 --tries=3 --timeout=90 --max-time=3600
+Restart=always
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=3600
+UMask=0002
+
+[Install]
+WantedBy=multi-user.target

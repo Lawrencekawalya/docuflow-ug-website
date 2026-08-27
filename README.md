@@ -65,3 +65,5 @@ npm run build
 Before grading or launch, submit a controlled request through the deployed form and verify both the saved database record and delivery to the configured email recipient.
 
 See [the implementation plan](docs/implementationplan.md) for the full rubric-aligned delivery and acceptance criteria.
+
+Production deployment instructions are in [the CI/CD deployment guide](docs/deployment.md).
