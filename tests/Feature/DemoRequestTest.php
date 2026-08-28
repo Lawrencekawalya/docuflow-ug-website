@@ -84,7 +84,19 @@ class DemoRequestTest extends TestCase
             'We have received your request. A member of our team will contact you within 48 hours to learn more about your document workflow and arrange the next step.',
             $mail->introLines,
         );
+        $this->assertContains('Your request reference is #1000.', $mail->introLines);
         $this->assertSame([['support@syntaxsystems.co', 'DocuFlow UG']], $mail->replyTo);
+    }
+
+    public function test_public_reference_numbers_start_at_1000(): void
+    {
+        $request = new DemoRequest;
+
+        $request->id = 1;
+        $this->assertSame(1000, $request->referenceNumber());
+
+        $request->id = 4;
+        $this->assertSame(1003, $request->referenceNumber());
     }
 
     public function test_required_demo_fields_are_validated(): void

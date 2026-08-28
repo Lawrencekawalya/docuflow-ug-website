@@ -41,6 +41,11 @@ use Illuminate\Support\Carbon;
 ])]
 class DemoRequest extends Model
 {
+    public function referenceNumber(): int
+    {
+        return $this->id + 999;
+    }
+
     /**
      * @return array<string, string>
      */

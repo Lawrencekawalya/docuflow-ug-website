@@ -33,7 +33,7 @@ class DemoRequestAcknowledged extends Notification implements ShouldQueue
             ->greeting("Hello {$request->full_name},")
             ->line("Thank you for requesting a DocuFlow demo for {$request->business_name}.")
             ->line('We have received your request. A member of our team will contact you within 48 hours to learn more about your document workflow and arrange the next step.')
-            ->line("Your request reference is #{$request->id}.")
+            ->line("Your request reference is #{$request->referenceNumber()}.")
             ->line('If you need to add anything in the meantime, reply directly to this email.')
             ->salutation('The DocuFlow UG team');
 
