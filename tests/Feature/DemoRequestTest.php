@@ -3,8 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\DemoRequest;
+use App\Notifications\DemoRequestAcknowledged;
 use App\Notifications\DemoRequestReceived;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
@@ -47,10 +49,17 @@ class DemoRequestTest extends TestCase
         $this->assertSame('Sarah Namara', $request->full_name);
         $this->assertSame(['invoices', 'receipts'], $request->document_types);
         $this->assertNotNull($request->notification_dispatched_at);
-        Notification::assertSentOnDemand(DemoRequestReceived::class);
+        Notification::assertSentOnDemand(
+            DemoRequestReceived::class,
+            fn (DemoRequestReceived $notification, array $channels, AnonymousNotifiable $notifiable): bool => $notifiable->routes['mail'] === 'leads@docuflow.test',
+        );
+        Notification::assertSentOnDemand(
+            DemoRequestAcknowledged::class,
+            fn (DemoRequestAcknowledged $notification, array $channels, AnonymousNotifiable $notifiable): bool => $notifiable->routes['mail'] === 'sarah@example.com',
+        );
     }
 
-    public function test_a_request_is_still_saved_when_no_notification_recipient_is_configured(): void
+    public function test_a_request_is_saved_and_the_requester_is_acknowledged_when_no_internal_recipient_is_configured(): void
     {
         Notification::fake();
         config(['docuflow.leads.email' => null]);
@@ -59,7 +68,23 @@ class DemoRequestTest extends TestCase
             ->assertRedirect(route('contact'));
 
         $this->assertDatabaseCount('demo_requests', 1);
-        Notification::assertNothingSent();
+        Notification::assertSentOnDemandTimes(DemoRequestReceived::class, 0);
+        Notification::assertSentOnDemand(DemoRequestAcknowledged::class);
+    }
+
+    public function test_the_acknowledgement_sets_the_48_hour_expectation_and_support_reply_address(): void
+    {
+        config(['docuflow.contact.email' => 'support@syntaxsystems.co']);
+        $request = DemoRequest::query()->create(collect($this->validPayload())->except('website')->all());
+
+        $mail = (new DemoRequestAcknowledged($request))->toMail(new AnonymousNotifiable);
+
+        $this->assertSame('We received your DocuFlow demo request', $mail->subject);
+        $this->assertContains(
+            'We have received your request. A member of our team will contact you within 48 hours to learn more about your document workflow and arrange the next step.',
+            $mail->introLines,
+        );
+        $this->assertSame([['support@syntaxsystems.co', 'DocuFlow UG']], $mail->replyTo);
     }
 
     public function test_required_demo_fields_are_validated(): void

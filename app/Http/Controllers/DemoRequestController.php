@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDemoRequest;
 use App\Models\DemoRequest;
+use App\Notifications\DemoRequestAcknowledged;
 use App\Notifications\DemoRequestReceived;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Notification;
@@ -17,8 +18,12 @@ class DemoRequestController extends Controller
 
         if (is_string($recipient) && $recipient !== '') {
             Notification::route('mail', $recipient)->notify(new DemoRequestReceived($demoRequest));
-            $demoRequest->update(['notification_dispatched_at' => now()]);
         }
+
+        Notification::route('mail', $demoRequest->work_email)
+            ->notify(new DemoRequestAcknowledged($demoRequest));
+
+        $demoRequest->update(['notification_dispatched_at' => now()]);
 
         return to_route('contact')->with('toast', [
             'type' => 'success',
