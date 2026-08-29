@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StartChatConversationRequest;
 use App\Http\Requests\StoreChatMessageRequest;
+use App\Jobs\SendChatPushNotification;
 use App\Models\ChatConversation;
 use App\Models\ChatMessage;
 use App\Notifications\ChatConversationStarted;
@@ -50,7 +51,7 @@ class GuestChatController extends Controller
         $token = Str::random(64);
         $validated = $request->validated();
 
-        $conversation = DB::transaction(function () use ($token, $validated): ChatConversation {
+        [$conversation, $message] = DB::transaction(function () use ($token, $validated): array {
             $conversation = ChatConversation::query()->create([
                 'visitor_token_hash' => hash('sha256', $token),
                 'visitor_name' => $validated['visitor_name'],
@@ -59,13 +60,15 @@ class GuestChatController extends Controller
                 'last_message_at' => now(),
             ]);
 
-            $conversation->messages()->create([
+            $message = $conversation->messages()->create([
                 'sender_type' => 'visitor',
                 'body' => $validated['message'],
             ]);
 
-            return $conversation;
+            return [$conversation, $message];
         });
+
+        SendChatPushNotification::dispatch($message->id)->afterCommit();
 
         $recipient = config('docuflow.leads.email');
 
@@ -133,6 +136,8 @@ class GuestChatController extends Controller
         ]);
 
         $conversation->update(['last_message_at' => now()]);
+
+        SendChatPushNotification::dispatch($message->id)->afterCommit();
 
         return response()->json([
             'message' => ChatPresenter::message($message),

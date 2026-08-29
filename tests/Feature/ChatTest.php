@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Jobs\SendChatPushNotification;
 use App\Models\ChatConversation;
 use App\Models\ChatMessage;
 use App\Models\User;
@@ -9,6 +10,7 @@ use App\Notifications\ChatConversationStarted;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
@@ -39,6 +41,7 @@ class ChatTest extends TestCase
     public function test_a_visitor_can_start_a_persisted_conversation(): void
     {
         Notification::fake();
+        Queue::fake();
         config(['docuflow.leads.email' => 'support@docuflow.test']);
 
         $response = $this->postJson(route('chat.store'), [
@@ -67,6 +70,10 @@ class ChatTest extends TestCase
             ChatConversationStarted::class,
             fn (ChatConversationStarted $notification, array $channels, AnonymousNotifiable $notifiable): bool => $notifiable->routes['mail'] === 'support@docuflow.test',
         );
+        Queue::assertPushed(
+            SendChatPushNotification::class,
+            fn (SendChatPushNotification $job): bool => $job->messageId === $conversation->messages()->value('id'),
+        );
     }
 
     public function test_chat_start_fields_and_honeypot_are_validated(): void
@@ -92,6 +99,7 @@ class ChatTest extends TestCase
 
     public function test_a_visitor_can_only_read_and_send_to_their_cookie_owned_conversation(): void
     {
+        Queue::fake();
         [$conversation, $token] = $this->conversation();
 
         $this->withCredentials()
@@ -109,6 +117,7 @@ class ChatTest extends TestCase
             'sender_type' => 'visitor',
             'body' => 'We process about 300 each month.',
         ]);
+        Queue::assertPushed(SendChatPushNotification::class);
 
         $this->withCookie('docuflow_chat', Str::random(64))
             ->postJson(route('chat.messages.store'), ['message' => 'Intrusion'])

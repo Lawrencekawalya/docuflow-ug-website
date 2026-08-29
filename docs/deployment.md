@@ -192,6 +192,9 @@ DOCUFLOW_PROFESSIONAL_SETUP_FEE=750000
 DOCUFLOW_PROFESSIONAL_DOCUMENT_ALLOWANCE=750
 DOCUFLOW_OVERAGE_POLICY="Additional documents above the monthly allowance are charged at UGX 1,000 per document. Customers are notified before recurring overage charges are applied."
 DOCUFLOW_CANCELLATION_POLICY="Month-to-month subscription. No long-term contract is required. Customers may cancel before the next billing cycle. Setup fees are one-time and non-refundable once implementation and configuration work has started."
+
+FIREBASE_PROJECT_ID=
+FIREBASE_CREDENTIALS=/var/www/docuflowug/shared/firebase-service-account.json
 ```
 
 Replace only `MAIL_PASSWORD=CHANGE_ME` with the real mailbox password directly on the server. Do not commit it or paste it into CI logs. For port 587, use `MAIL_SCHEME=smtp`; Symfony Mailer negotiates STARTTLS when the server supports it. Reserve `MAIL_SCHEME=smtps` for implicit TLS, normally on port 465. This project does not read `MAIL_ENCRYPTION`.
@@ -373,3 +376,28 @@ sudo -u deployer php /var/www/docuflowug/current/artisan queue:restart
 ```
 
 Code rollback does not automatically reverse database migrations. Deploy backward-compatible migrations and use explicit corrective migrations when necessary.
+
+## Mobile support app and push notifications
+
+The mobile API is deployed with the Laravel application under `/api/mobile`.
+The normal deployment migration step creates its personal-access-token and
+support-device tables. Only verified users promoted with
+`chat:grant-support` can obtain a mobile token.
+
+To activate push notifications, copy the private Firebase service-account key
+to the shared location referenced by `FIREBASE_CREDENTIALS`, then run:
+
+```bash
+chown deployer:www-data /var/www/docuflowug/shared/firebase-service-account.json
+chmod 640 /var/www/docuflowug/shared/firebase-service-account.json
+cd /var/www/docuflowug/current
+sudo -u deployer php artisan optimize:clear
+sudo -u deployer php artisan optimize
+systemctl restart docuflowug-queue.service
+```
+
+Do not place that key under `releases`, commit it, or print its contents. Follow
+the app-specific setup and build steps in
+`mobile/docuflow_support/README.md`. After installing the configured APK, sign
+in with the promoted support account, send a controlled message from a separate
+browser, and verify that tapping the notification opens the correct conversation.

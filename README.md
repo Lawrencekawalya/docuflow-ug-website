@@ -50,6 +50,17 @@ php artisan chat:grant-support support@syntaxsystems.co
 
 The account must already exist. To remove access, append `--revoke`. Publicly registered accounts never receive chat access automatically.
 
+### Mobile support inbox
+
+The Flutter app in `mobile/docuflow_support` lets promoted support agents read
+and reply to the same conversations from Android or iOS. It uses a scoped,
+revocable Laravel Sanctum token stored in the device's secure storage. The open
+app refreshes conversations automatically; Firebase Cloud Messaging adds push
+notifications when the app is backgrounded or closed.
+
+See [the mobile app guide](mobile/docuflow_support/README.md) for Firebase,
+development and APK build instructions.
+
 ## Public business configuration
 
 The approved public commercial and contact values are the application defaults. They may be overridden in `.env` when the business changes them:

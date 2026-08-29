@@ -78,6 +78,8 @@ export default defineConfigWithVueTs(
             'node_modules',
             'public',
             'bootstrap/ssr',
+            'mobile/**/.dart_tool/**',
+            'mobile/**/build/**',
             'tailwind.config.js',
             'vite.config.ts',
             'resources/js/actions/**',

@@ -89,6 +89,7 @@ jobs:
             --exclude='.env' \
             --exclude='deploy' \
             --exclude='docs' \
+            --exclude='mobile' \
             --exclude='node_modules' \
             --exclude='storage' \
             --exclude='tests' \
