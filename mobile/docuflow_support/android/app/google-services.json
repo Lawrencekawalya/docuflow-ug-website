@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "253901909434",
+    "project_id": "docuflowug-d66ea",
+    "storage_bucket": "docuflowug-d66ea.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253901909434:android:5bf8ddc0ce7356181b0183",
+        "android_client_info": {
+          "package_name": "com.syntaxsystems.docuflow_support"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLHAt5ruuNpWPM2jRvHiX1VayW3rkKHpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
