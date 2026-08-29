@@ -99,9 +99,21 @@ class GuestChatController extends Controller
             ->map(fn (ChatMessage $message): array => ChatPresenter::message($message))
             ->values();
 
+        $latestReadVisitorMessage = $conversation->messages()
+            ->where('sender_type', 'visitor')
+            ->whereNotNull('read_at')
+            ->latest('id')
+            ->first();
+
         return response()->json([
             'status' => $conversation->status,
             'messages' => $messages,
+            'visitor_read_receipt' => $latestReadVisitorMessage === null
+                ? null
+                : [
+                    'through_id' => $latestReadVisitorMessage->id,
+                    'read_at' => $latestReadVisitorMessage->read_at?->toIso8601String(),
+                ],
         ])->header('Cache-Control', 'no-store');
     }
 

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
 import {
+    Check,
+    CheckCheck,
     CheckCircle2,
     LoaderCircle,
     MessageCircle,
@@ -22,6 +24,10 @@ type ConversationResponse = { conversation: ChatConversation | null };
 type MessagesResponse = {
     status: ChatConversation['status'];
     messages: ChatMessage[];
+    visitor_read_receipt: {
+        through_id: number;
+        read_at: string;
+    } | null;
 };
 
 const isOpen = ref(false);
@@ -63,6 +69,23 @@ const appendMessages = (incoming: ChatMessage[]): void => {
     );
     conversation.value.messages.push(
         ...incoming.filter((message) => !knownIds.has(message.id)),
+    );
+};
+
+const applyReadReceipt = (
+    receipt: MessagesResponse['visitor_read_receipt'],
+): void => {
+    if (!conversation.value || receipt === null) {
+        return;
+    }
+
+    conversation.value.messages = conversation.value.messages.map((message) =>
+        message.sender_type === 'visitor' && message.id <= receipt.through_id
+            ? {
+                  ...message,
+                  read_at: message.read_at ?? receipt.read_at,
+              }
+            : message,
     );
 };
 
@@ -157,6 +180,7 @@ const pollMessages = async (): Promise<void> => {
             }),
         );
         conversation.value.status = response.status;
+        applyReadReceipt(response.visitor_read_receipt);
 
         if (response.messages.length > 0) {
             appendMessages(response.messages);
@@ -369,14 +393,29 @@ onUnmounted(() => {
                             {{ message.body }}
                         </p>
                         <p
-                            class="mt-1 text-right text-[10px]"
+                            class="mt-1 flex items-center justify-end gap-1 text-[10px]"
                             :class="
                                 message.sender_type === 'visitor'
                                     ? 'text-blue-100'
                                     : 'text-slate-400'
                             "
                         >
-                            {{ formatTime(message.created_at) }}
+                            <span>{{ formatTime(message.created_at) }}</span>
+                            <template v-if="message.sender_type === 'visitor'">
+                                <CheckCheck
+                                    v-if="message.read_at"
+                                    class="size-3.5 text-cyan-200"
+                                    aria-hidden="true"
+                                />
+                                <Check
+                                    v-else
+                                    class="size-3.5"
+                                    aria-hidden="true"
+                                />
+                                <span>{{
+                                    message.read_at ? 'Read' : 'Delivered'
+                                }}</span>
+                            </template>
                         </p>
                     </div>
                 </div>

@@ -169,6 +169,17 @@ class ChatTest extends TestCase
             $conversation->messages()->where('sender_type', 'visitor')->firstOrFail()->read_at,
         );
 
+        $visitorMessageId = $conversation->messages()
+            ->where('sender_type', 'visitor')
+            ->value('id');
+
+        $this->withCredentials()
+            ->withCookie('docuflow_chat', $token)
+            ->getJson(route('chat.messages', ['after' => $visitorMessageId]))
+            ->assertOk()
+            ->assertJsonPath('visitor_read_receipt.through_id', $visitorMessageId)
+            ->assertJsonPath('visitor_read_receipt.read_at', fn (mixed $value): bool => is_string($value));
+
         $this->postJson(route('support.conversations.messages.store', $conversation), [
             'message' => 'Yes. We can arrange a workflow review.',
         ])->assertCreated()
