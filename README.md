@@ -38,6 +38,18 @@ php artisan queue:work --tries=3
 
 The database remains the source of truth if notification delivery is temporarily unavailable.
 
+## Website support chat
+
+Marketing pages include a lightweight floating chat. Visitor conversations are persisted in the database, owned through an encrypted HttpOnly browser token and updated through short polling only while the widget is open. A queued email alerts the configured lead recipient when a new conversation begins.
+
+The responsive staff inbox is available at `/support/conversations`. Access requires a verified account explicitly promoted as a support agent:
+
+```bash
+php artisan chat:grant-support support@syntaxsystems.co
+```
+
+The account must already exist. To remove access, append `--revoke`. Publicly registered accounts never receive chat access automatically.
+
 ## Public business configuration
 
 The approved public commercial and contact values are the application defaults. They may be overridden in `.env` when the business changes them:

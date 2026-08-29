@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\ChatMessage;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -41,6 +42,12 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'supportUnreadCount' => fn (): int => $request->user()?->is_support_agent === true
+                ? ChatMessage::query()
+                    ->where('sender_type', 'visitor')
+                    ->whereNull('read_at')
+                    ->count()
+                : 0,
             'docuflow' => [
                 'contact' => config('docuflow.contact'),
                 'pricing' => config('docuflow.pricing'),

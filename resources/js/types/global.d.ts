@@ -20,6 +20,7 @@ declare module '@inertiajs/core' {
             name: string;
             auth: Auth;
             docuflow: DocuflowPublicConfig;
+            supportUnreadCount: number;
             sidebarOpen: boolean;
             [key: string]: unknown;
         };

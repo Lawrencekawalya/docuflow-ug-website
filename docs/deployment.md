@@ -205,6 +205,17 @@ chmod 640 /var/www/docuflowug/shared/.env
 
 Do not proceed with literal `CHANGE_ME` values in production.
 
+### Grant support-inbox access
+
+After the intended support user has registered and verified their account, grant that existing user access from the active release:
+
+```bash
+cd /var/www/docuflowug/current
+sudo -u deployer php artisan chat:grant-support support@syntaxsystems.co
+```
+
+Only explicitly promoted users can access `/support/conversations`. Revoke access with the same command and the `--revoke` option.
+
 ## 5. Install the Nginx and queue configuration
 
 On the VPS:

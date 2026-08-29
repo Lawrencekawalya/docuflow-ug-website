@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import MarketingFooter from '@/components/marketing/MarketingFooter.vue';
 import MarketingHeader from '@/components/marketing/MarketingHeader.vue';
+import VisitorChatWidget from '@/components/marketing/VisitorChatWidget.vue';
 import { Toaster } from '@/components/ui/sonner';
 </script>
 
@@ -19,6 +20,7 @@ import { Toaster } from '@/components/ui/sonner';
             <slot />
         </main>
         <MarketingFooter />
+        <VisitorChatWidget />
         <Toaster />
     </div>
 </template>

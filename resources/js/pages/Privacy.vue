@@ -8,7 +8,7 @@ import { contact } from '@/routes';
     <Head title="Privacy Notice">
         <meta
             name="description"
-            content="How DocuFlow UG handles information submitted through its demo request form."
+            content="How DocuFlow UG handles information submitted through its demo request form and website chat."
         />
     </Head>
     <section
@@ -37,10 +37,11 @@ import { contact } from '@/routes';
                     Information we collect
                 </h2>
                 <p class="mt-3 leading-8">
-                    When you request a demonstration, we collect the contact and
-                    business-workflow information you choose to provide. The
-                    public form is not intended for confidential documents,
-                    passwords or access credentials.
+                    When you request a demonstration or start a website chat, we
+                    collect the contact details, messages and business-workflow
+                    information you choose to provide. These channels are not
+                    intended for confidential documents, passwords or access
+                    credentials.
                 </p>
             </div>
             <div>
@@ -59,12 +60,12 @@ import { contact } from '@/routes';
                     Storage and access
                 </h2>
                 <p class="mt-3 leading-8">
-                    Requests are stored as business leads and may be delivered
-                    to the configured DocuFlow email or workflow. Access should
-                    be limited to people responsible for reviewing and
-                    responding to enquiries. Records should be retained only
-                    while needed for that purpose and legitimate business
-                    administration.
+                    Demo requests and chat conversations are stored as business
+                    enquiries and may be delivered to the configured DocuFlow
+                    email or workflow. Chat access is protected by an encrypted
+                    browser token for the visitor and authenticated access for
+                    support staff. Records should be retained only while needed
+                    to respond and for legitimate business administration.
                 </p>
             </div>
             <div>
