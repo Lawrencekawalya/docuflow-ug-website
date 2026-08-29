@@ -241,7 +241,7 @@ onUnmounted(() => {
                 <p class="font-extrabold">Chat with DocuFlow</p>
                 <p class="flex items-center gap-1.5 text-xs text-slate-300">
                     <span class="size-2 rounded-full bg-emerald-400" />
-                    We usually reply within 48 hours
+                    We usually reply within 15 minutes
                 </p>
             </div>
             <button
