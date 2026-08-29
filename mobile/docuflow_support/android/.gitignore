@@ -5,6 +5,9 @@ gradle-wrapper.jar
 /gradlew.bat
 /local.properties
 GeneratedPluginRegistrant.java
+
+# Firebase client configuration is supplied per environment and kept local.
+/app/google-services.json
 .cxx/
 
 # Remember to never publicly share your keystore.
