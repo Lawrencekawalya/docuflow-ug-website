@@ -9,6 +9,7 @@ import {
     UserRound,
 } from '@lucide/vue';
 import DemoCta from '@/components/marketing/DemoCta.vue';
+import DocumentHeroPattern from '@/components/marketing/DocumentHeroPattern.vue';
 import SectionHeading from '@/components/marketing/SectionHeading.vue';
 
 const principles = [
@@ -37,14 +38,12 @@ const principles = [
             content="Learn how DocuFlow UG is building practical, research-led document automation for Ugandan businesses."
     /></Head>
     <section
-        class="relative overflow-hidden bg-blue-600 px-5 py-20 text-white sm:px-6 lg:px-8 lg:py-28"
+        class="relative overflow-hidden bg-slate-950 px-5 py-20 text-white sm:px-6 lg:px-8 lg:py-24"
     >
-        <div
-            class="absolute -top-28 -right-20 size-96 rounded-full bg-cyan-400/20 blur-3xl"
-        />
-        <div class="relative mx-auto max-w-4xl text-center">
+        <DocumentHeroPattern />
+        <div class="relative z-10 mx-auto max-w-4xl text-center">
             <p
-                class="text-sm font-extrabold tracking-[0.14em] text-blue-100 uppercase"
+                class="text-sm font-extrabold tracking-[0.14em] text-blue-400 uppercase"
             >
                 About DocuFlow UG
             </p>
@@ -53,7 +52,7 @@ const principles = [
             >
                 Local automation built for practical business problems
             </h1>
-            <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-blue-100">
+            <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300">
                 DocuFlow UG focuses on repetitive document work that consumes
                 time, introduces errors and slows down otherwise capable teams.
             </p>
