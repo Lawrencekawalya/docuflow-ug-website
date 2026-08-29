@@ -232,7 +232,9 @@ onUnmounted(() => {
                 class="min-h-0 flex-col border-r"
                 :class="activeConversation ? 'hidden lg:flex' : 'flex'"
             >
-                <div class="border-b px-5 py-4">
+                <div
+                    class="flex h-24 shrink-0 flex-col justify-center border-b px-5"
+                >
                     <h2 class="font-extrabold">Conversations</h2>
                     <p class="mt-1 text-xs text-muted-foreground">
                         {{ conversations.length }} most recent
@@ -325,7 +327,7 @@ onUnmounted(() => {
                 class="flex min-h-0 flex-col bg-slate-50 dark:bg-slate-950"
             >
                 <header
-                    class="flex items-center gap-3 border-b bg-background px-4 py-3 sm:px-5"
+                    class="flex h-24 shrink-0 items-center gap-3 border-b bg-background px-4 sm:px-5"
                 >
                     <Link
                         :href="conversationsIndex()"
