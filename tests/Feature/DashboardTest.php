@@ -16,12 +16,22 @@ class DashboardTest extends TestCase
         $response->assertRedirect(route('login'));
     }
 
-    public function test_authenticated_users_can_visit_the_dashboard()
+    public function test_support_agents_are_redirected_from_the_legacy_dashboard_to_the_inbox(): void
     {
         $user = User::factory()->create();
-        $this->actingAs($user);
+        $user->forceFill(['is_support_agent' => true])->save();
 
-        $response = $this->get(route('dashboard'));
-        $response->assertOk();
+        $this->actingAs($user)
+            ->get(route('dashboard'))
+            ->assertRedirect(route('support.conversations.index'));
+    }
+
+    public function test_other_users_are_redirected_from_the_legacy_dashboard_to_the_website(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->get(route('dashboard'))
+            ->assertRedirect(route('home'));
     }
 }

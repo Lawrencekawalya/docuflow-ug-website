@@ -19,13 +19,17 @@ const { isCurrentUrl } = useCurrentUrl();
 
 <template>
     <SidebarGroup class="px-2 py-0">
-        <SidebarGroupLabel>Platform</SidebarGroupLabel>
+        <SidebarGroupLabel
+            class="font-bold tracking-[0.14em] text-blue-600 uppercase dark:text-blue-300"
+            >Support workspace</SidebarGroupLabel
+        >
         <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
                 <SidebarMenuButton
                     as-child
                     :is-active="isCurrentUrl(item.href)"
                     :tooltip="item.title"
+                    class="hover:bg-blue-50 hover:text-blue-700 data-[active=true]:bg-blue-600 data-[active=true]:text-white data-[active=true]:shadow-sm data-[active=true]:shadow-blue-950/20 dark:hover:bg-blue-950/50 dark:hover:text-blue-200"
                 >
                     <Link :href="item.href">
                         <component :is="item.icon" />

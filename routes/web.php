@@ -4,6 +4,8 @@ use App\Http\Controllers\DemoRequestController;
 use App\Http\Controllers\GuestChatController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SupportChatController;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Welcome')->name('home');
@@ -35,7 +37,11 @@ Route::prefix('chat')->name('chat.')->group(function (): void {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+    Route::get('dashboard', function (Request $request): RedirectResponse {
+        return $request->user()?->is_support_agent === true
+            ? redirect()->route('support.conversations.index')
+            : redirect()->route('home');
+    })->name('dashboard');
 
     Route::middleware('support-agent')->prefix('support')->name('support.')->group(function (): void {
         Route::get('/conversations', [SupportChatController::class, 'index'])
